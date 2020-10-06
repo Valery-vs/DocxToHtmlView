@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { QuillEditorComponent } from 'ngx-quill';
+import { DocService } from '../_services/doc.service';
 
 @Component({
   selector: 'app-home',
@@ -30,8 +32,31 @@ export class HomeComponent implements OnInit {
   };
 
   public content: string;
+  private editor: QuillEditorComponent;
+
+  constructor(private docService: DocService) {
+
+  }
 
   ngOnInit() {
-    this.content = '<p>Paragraph1</p><p>Paragraph2</p>';
+  }
+
+  onEditorCreated(editor: QuillEditorComponent)  {
+    this.editor = editor;
+  }
+  onFileSelected(files: File[]) {
+    if (files == null || files.length === 0) {
+      return;
+    }
+
+    const file = files[0];
+
+    this.docService.ConvertDocxToHtml(file).then(doc => {
+        this.content = doc.content;
+        this.editor.content = doc.content;
+        console.info(this.editor.content, doc.content);
+        //this.editor.modules.clipboard.dangerouslyPasteHTML('&nbsp;<b>World</b>');
+      },
+      error => console.error(error));
   }
 }

@@ -1,5 +1,6 @@
 <h1>Hello, world!</h1>
-<quill-editor  [(ngModel)]="content" [modules]="modules" [styles]="{height: '200px'}">
+<input type="file" #control (change)="onFileSelected(control.files)" accept=".docx">
+<quill-editor  [(ngModel)]="content" [modules]="modules" [styles]="{height: '800px'}" (onEditorCreated)="onEditorCreated($event)">
   <div quill-editor-toolbar>
     <span class="ql-formats">
       <select class="ql-font">

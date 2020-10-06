@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { DocService } from './_services/doc.service';
 
 import { QuillModule } from 'ngx-quill';
 
@@ -23,7 +24,9 @@ import { QuillModule } from 'ngx-quill';
     ]),
     QuillModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    DocService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
