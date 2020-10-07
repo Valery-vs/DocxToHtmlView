@@ -73,6 +73,56 @@
             // must do it correctly, or entities will not be serialized properly.
 
             var body = html.Descendants(XName.Get("body", "http://www.w3.org/1999/xhtml")).First();
+            //var htmlString = string.Concat(body.Nodes().Select(x => x.ToString(SaveOptions.DisableFormatting)).ToArray());
+            var htmlString = body.ToString(SaveOptions.DisableFormatting);
+
+            return new DocModel { Content = htmlString };
+        }
+
+        [HttpPut("htmltodocx")]
+        [RequestSizeLimit(115343360)]
+        public DocModel ConvertHtmlToDocx()
+        {
+            var file = this.Request.Form.Files[0];
+
+            using var memoryStream = new MemoryStream();
+            file.CopyTo(memoryStream);
+            using var wDoc = WordprocessingDocument.Open(memoryStream, true);
+
+            var destFileName = new FileInfo(file.FileName.Replace(".docx", ".html"));
+            var outputDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+
+            var imageDirectoryName =
+                destFileName.Name.Substring(0, destFileName.Name.Length - 5) + "_files";
+            imageDirectoryName = Path.Combine(outputDirectory, imageDirectoryName);
+            Directory.CreateDirectory(imageDirectoryName);
+
+            var pageTitle = file.FileName;
+            var part = wDoc.CoreFilePropertiesPart;
+            if (part != null)
+            {
+                pageTitle = (string) part.GetXDocument().Descendants(DC.title).FirstOrDefault() ??
+                            file.FileName;
+            }
+
+            var settings = GetConverterSettings(pageTitle, imageDirectoryName);
+            var htmlElement = WmlToHtmlConverter.ConvertToHtml(wDoc, settings);
+
+            // Produce HTML document with <!DOCTYPE html > declaration to tell the browser
+            // we are using HTML5.
+            var html = new XDocument(
+                new XDocumentType("html", null, null, null),
+                htmlElement);
+
+            // Note: the xhtml returned by ConvertToHtmlTransform contains objects of type
+            // XEntity.  PtOpenXmlUtil.cs define the XEntity class.  See
+            // http://blogs.msdn.com/ericwhite/archive/2010/01/21/writing-entity-references-using-linq-to-xml.aspx
+            // for detailed explanation.
+            //
+            // If you further transform the XML tree returned by ConvertToHtmlTransform, you
+            // must do it correctly, or entities will not be serialized properly.
+
+            var body = html.Descendants(XName.Get("body", "http://www.w3.org/1999/xhtml")).First();
             var htmlString = string.Concat(body.Nodes().Select(x => x.ToString(SaveOptions.DisableFormatting)).ToArray());
 
             return new DocModel { Content = htmlString };
