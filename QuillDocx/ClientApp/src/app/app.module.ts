@@ -11,6 +11,7 @@ import { TinyMceComponent } from './tinyMce/tinyMce.component';
 import { DocService } from './_services/doc.service';
 
 import { QuillModule, QuillConfig } from 'ngx-quill';
+import { EditorModule, TINYMCE_SCRIPT_SRC  } from '@tinymce/tinymce-angular';
 
 // import Quill from 'quill';
 // import QuillBetterTable from 'quill-better-table';
@@ -41,11 +42,13 @@ import { QuillModule, QuillConfig } from 'ngx-quill';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'tinyMce', component: TinyMceComponent },
     ]),
+    EditorModule,
     QuillModule.forRoot()
     //QuillModule.forRoot(quillConfig)
   ],
   providers: [
-    DocService
+    DocService,
+    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }
   ],
   bootstrap: [AppComponent]
 })
