@@ -30,7 +30,7 @@
         }
 
         [HttpPut("docxtohtml")]
-        [RequestSizeLimit(11534336)]
+        [RequestSizeLimit(115343360)]
         public DocModel ConvertDocxToHtml()
         {
             var file = this.Request.Form.Files[0];
@@ -41,11 +41,11 @@
 
             var destFileName = new FileInfo(file.FileName.Replace(".docx", ".html"));
             var outputDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            Directory.CreateDirectory(outputDirectory);
 
             var imageDirectoryName =
-                destFileName.FullName.Substring(0, destFileName.FullName.Length - 5) + "_files";
+                destFileName.Name.Substring(0, destFileName.Name.Length - 5) + "_files";
             imageDirectoryName = Path.Combine(outputDirectory, imageDirectoryName);
+            Directory.CreateDirectory(imageDirectoryName);
 
             var pageTitle = file.FileName;
             var part = wDoc.CoreFilePropertiesPart;

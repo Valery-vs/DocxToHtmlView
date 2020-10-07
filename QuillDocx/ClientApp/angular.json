@@ -26,12 +26,14 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/quill/dist/quill.core.css",
-              "node_modules/quill/dist/quill.bubble.css",
-              "node_modules/quill/dist/quill.snow.css",
+              "node_modules/quill-better-table/dist/quill-better-table.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/quill/dist/quill.js",
+              "node_modules/quill/dist/quill.core.js",
+              "node_modules/quill-better-table/dist/quill-better-table.min.js"
+            ]
           },
           "configurations": {
             "production": {
