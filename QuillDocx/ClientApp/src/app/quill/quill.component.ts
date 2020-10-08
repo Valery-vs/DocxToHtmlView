@@ -3,10 +3,10 @@ import { QuillEditorComponent } from 'ngx-quill';
 import { DocService } from '../_services/doc.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
+  selector: 'app-quill',
+  templateUrl: './quill.component.html',
 })
-export class HomeComponent implements OnInit {
+export class QuillComponent implements OnInit {
   public htmlContent: string;
   public content: string;
   private editor: QuillEditorComponent;

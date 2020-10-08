@@ -1,4 +1,4 @@
 <h1>TinyMCE 5 editor test</h1>
 <input type="file" #control (change)="onFileSelected(control.files)" accept=".docx">
 <editor [init]="config" id="editor" (onChange)="onChange($event)"></editor>
-<textarea style="width:100%" rows="10">{{htmlContent}}</textarea>
+<textarea style="width:100%" rows="10" readonly>{{htmlContent}}</textarea>

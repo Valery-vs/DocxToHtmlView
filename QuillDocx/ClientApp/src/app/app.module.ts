@@ -5,7 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import { QuillComponent } from './quill/quill.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { TinyMceComponent } from './tinyMce/tinyMce.component';
 import { DocService } from './_services/doc.service';
@@ -95,7 +95,7 @@ tinymce.PluginManager.add('example', function (editor, url) {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    QuillComponent,
     NavMenuComponent,
     TinyMceComponent
   ],
@@ -104,7 +104,7 @@ tinymce.PluginManager.add('example', function (editor, url) {
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', component: QuillComponent, pathMatch: 'full' },
       { path: 'tinyMce', component: TinyMceComponent },
     ]),
     EditorModule,
