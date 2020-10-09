@@ -74,7 +74,7 @@
 
             var body = html.Descendants(XName.Get("body", "http://www.w3.org/1999/xhtml")).First();
             //var htmlString = string.Concat(body.Nodes().Select(x => x.ToString(SaveOptions.DisableFormatting)).ToArray());
-            var htmlString = body.ToString(SaveOptions.DisableFormatting);
+            var htmlString = html.ToString(SaveOptions.DisableFormatting);
 
             return new DocModel { Content = htmlString };
         }
