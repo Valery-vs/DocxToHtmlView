@@ -1,15 +1,14 @@
 import tinymce from 'tinymce';
-import Editor from 'tinymce';
 
 export class HiddenTextPluggin {
   static toggleState = false;
 
-  private static hideHiddenText(edito: Editor) {
-    console.info("hide", Editor.activeEditor.getBody());
+  private static hideHiddenText() {
+    console.info("hide", tinymce.activeEditor.getBody());
   }
 
-  private static showHiddenText(editor: Editor) {
-    console.info("show", Editor.activeEditor.getBody());
+  private static showHiddenText() {
+    console.info("show", tinymce.activeEditor.getBody());
   }
 
   static register() {
@@ -20,7 +19,7 @@ export class HiddenTextPluggin {
         text: 'Hidden text',
         onAction: function (api) {
           HiddenTextPluggin.toggleState = !HiddenTextPluggin.toggleState;
-          HiddenTextPluggin.toggleState ? HiddenTextPluggin.showHiddenText(editor) : HiddenTextPluggin.hideHiddenText(editor);
+          HiddenTextPluggin.toggleState ? HiddenTextPluggin.showHiddenText() : HiddenTextPluggin.hideHiddenText();
         },
         onSetup: function(api) {
           api.setActive(HiddenTextPluggin.toggleState);
@@ -34,7 +33,7 @@ export class HiddenTextPluggin {
         text: 'Hidden text',
         onAction: function (api) {
           HiddenTextPluggin.toggleState = !HiddenTextPluggin.toggleState;
-          HiddenTextPluggin.toggleState ? HiddenTextPluggin.showHiddenText(editor) : HiddenTextPluggin.hideHiddenText(editor);
+          HiddenTextPluggin.toggleState ? HiddenTextPluggin.showHiddenText() : HiddenTextPluggin.hideHiddenText();
         },
         onSetup: function(api) {
           api.setActive(HiddenTextPluggin.toggleState);

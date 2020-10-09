@@ -54,6 +54,28 @@ export class UiPluggin {
         },
       });
 
+      // Adds a menu item, which can then be included in any menu via the menu/menubar configuration
+      editor.ui.registry.addContextMenu('ui', {
+        update: function (element) {
+          return [{
+            text: 'UI',
+            onAction: function (api) {
+              // Open window
+              openDialog();
+            }
+          }];
+        }
+      });
+
+      editor.ui.registry.addContextToolbar('ui', {
+        predicate: function (node) {
+          return !editor.selection.isCollapsed();
+        },
+        items: 'ui | bold italic | blockquote',
+        position: 'selection',
+        scope: 'node'
+      });
+
       return {
         getMetadata: function () {
           return {

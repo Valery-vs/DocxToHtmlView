@@ -37,7 +37,9 @@ export class TinyMceComponent implements OnInit {
       { title: 'Starting my story', description: 'A cure for writers block', content: 'Once upon a time...' },
       { title: 'New list with dates', description: 'New List with dates', content: '<div class="mceTmpl"><span class="cdate">cdate</span><br /><span class="mdate">mdate</span><h2>My List</h2><ul><li></li><li></li></ul></div>' }
     ],
-    contextmenu: 'link image imagetools table',
+    contextmenu: 'link image imagetools table ui',
+    contextmenu_never_use_native: true,
+
     content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
     save_enablewhendirty: true,
     save_onsavecallback: function () { console.log('Save accepted'); }
