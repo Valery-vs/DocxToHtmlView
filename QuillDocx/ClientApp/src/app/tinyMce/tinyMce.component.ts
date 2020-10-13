@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { EditorComponent } from '@tinymce/tinymce-angular';
 import { DocService } from '../_services/doc.service';
 
+
 @Component({
   selector: 'app-tinyMce',
   templateUrl: './tinyMce.component.html',
