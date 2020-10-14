@@ -1,3 +1,3 @@
-export class Doc {
+export class HtmlDoc {
   public content: string;
 }
