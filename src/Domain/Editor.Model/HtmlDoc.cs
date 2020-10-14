@@ -1,6 +1,6 @@
-﻿namespace Docx.Model
+﻿namespace Editor.Model
 {
-    public class HtmlModel
+    public class HtmlDoc
     {
         public string Content { get; set; }
     }

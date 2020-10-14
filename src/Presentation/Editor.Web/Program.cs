@@ -1,4 +1,4 @@
-namespace DocxWeb
+namespace Editor.Web
 {
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Hosting;
