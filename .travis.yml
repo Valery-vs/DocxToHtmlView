@@ -13,6 +13,5 @@ matrix:
             - 10
         script:
             - cd src/Presentation/Editor.Web/ClientApp
-            - npm -v
             - npm install
             - npm run build
