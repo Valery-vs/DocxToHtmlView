@@ -1,6 +1,6 @@
-﻿namespace QuillDocx.ModelView
+﻿namespace Docx.Model
 {
-    public class DocModel
+    public class HtmlModel
     {
         public string Content { get; set; }
     }

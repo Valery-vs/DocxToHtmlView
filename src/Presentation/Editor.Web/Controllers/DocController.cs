@@ -1,15 +1,13 @@
-﻿namespace QuillDocx.Controllers
+﻿namespace DocxWeb.Controllers
 {
     using System;
-    using System.Linq;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Logging;
     using System.Drawing.Imaging;
     using System.IO;
-    using System.Text;
+    using System.Linq;
     using System.Xml.Linq;
     using DocumentFormat.OpenXml.Packaging;
-    using ModelView;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
     using OpenXmlPowerTools;
 
     [ApiController]
