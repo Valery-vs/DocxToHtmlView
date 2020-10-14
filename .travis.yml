@@ -6,13 +6,13 @@ matrix:
         dotnet: 3.1
         script:
             - dotnet restore
-            - dotnet build -c Release
-            - cd src/Presentation/Editor.Web/ClientApp
+            - dotnet build -c Release            
 
       - language: node_js
         node_js:
             - 10
         script:
+            - cd src/Presentation/Editor.Web/ClientApp
             - npm -v
             - npm install
             - npm run build
