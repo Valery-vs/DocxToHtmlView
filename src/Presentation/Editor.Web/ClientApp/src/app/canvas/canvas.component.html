@@ -1,3 +1,6 @@
 <h1>Canvas example</h1>
-<input type="file" #control (change)="onFileSelected(control.files)" accept=".docx">
+<div class="canvas-text-editor" [class.focused]="inputFocused" tabindex="0" (focus)="onFocus()">
+  <canvas #myCanvas class="canvas"></canvas>
+  <textarea #input class="input" tabindex="-1" (focus)="onInputFocus()" (blur)="onInputBlur()"></textarea>
+</div>
 

@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { HtmlDoc } from '../_models/htmlDoc';
+import { HtmlDoc } from '../_dto/htmlDoc';
 
 @Injectable()
 export class DocService {
