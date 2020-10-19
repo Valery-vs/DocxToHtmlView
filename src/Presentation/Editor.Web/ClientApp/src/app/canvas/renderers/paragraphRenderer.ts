@@ -5,7 +5,8 @@ export class ParagraphRenderer {
     ctx.save();
 
     ctx.font = paragraph.Font.GetStyle();
-    ctx.fillText(paragraph.Text, 0, paragraph.Metrics.Top + paragraph.Metrics.Height);
+    ctx.textAlign = paragraph.TextAlign.toString() as CanvasTextAlign;
+    ctx.fillText(paragraph.Text, 0, paragraph.Metrics.Top + paragraph.Metrics.Baseline);
     ctx.restore();
   }
 }

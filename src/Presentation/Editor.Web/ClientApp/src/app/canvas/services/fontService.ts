@@ -7,10 +7,12 @@ export class FontService {
 
     ctx.font = font.GetStyle();
     const metrics = ctx.measureText(text);
+    console.info(text, metrics);
     const paraMetrics = new ParagraphMetrics();
     paraMetrics.Width = metrics.width;
     paraMetrics.FontHeight = metrics.fontBoundingBoxAscent + metrics.fontBoundingBoxDescent;
     paraMetrics.Height = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
+    paraMetrics.Baseline = metrics.actualBoundingBoxAscent;
     ctx.restore();
 
     return paraMetrics;

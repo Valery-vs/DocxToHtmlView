@@ -29,10 +29,10 @@ export class CanvasComponent implements OnInit, OnDestroy  {
     this.ctx = this.myCanvas.nativeElement.getContext('2d');
 
     this.doc = new Document();
-    this.doc.AddParagraph('test1', new Font('sans-serif', '14px'));
-    this.doc.AddParagraph('test2', new Font('Times New Roman', '40pt'));
-    this.doc.AddParagraph('test3', new Font('Calibri', '40pt'));
-    this.doc.AddParagraph('test4', new Font('sans-serif', '20px'));
+    this.doc.AddParagraph('test1gCW', new Font('sans-serif', '14px'));
+    this.doc.AddParagraph('test2gfCW', new Font('Times New Roman', '40pt'));
+    this.doc.AddParagraph('test3gCW', new Font('Calibri', '40pt'));
+    this.doc.AddParagraph('test4gCW123123123123', new Font('sans-serif', '20px'));
     DocumentService.Measure(this.doc, this.ctx);
 
     this.ngZone.runOutsideAngular(() => this.animate());

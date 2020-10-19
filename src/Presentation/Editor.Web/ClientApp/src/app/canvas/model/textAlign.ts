@@ -1,7 +1,7 @@
 export enum TextAlign {
-  start,
-  end,
-  left,
-  right,
-  center
+  start = 'start',
+  end = 'end',
+  left = 'left',
+  right = 'right',
+  center = 'center'
 }

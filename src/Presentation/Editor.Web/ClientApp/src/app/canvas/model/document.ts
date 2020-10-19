@@ -8,9 +8,11 @@ export class Document {
     return this._paragraphs;
   }
 
-  public AddParagraph(text: string, font: Font) {
+  public AddParagraph(text: string, font: Font): Paragraph {
     const para = new Paragraph(font);
     para.Text = text;
     this._paragraphs.push(para);
+
+    return para;
   }
 }
