@@ -1,0 +1,4 @@
+<div #editor class="canvas-text-editor" [class.focused]="inputFocused" tabindex="0" (focus)="onFocus()">
+  <canvas #myCanvas class="canvas" width=800 height=600></canvas>
+  <textarea #input class="input" tabindex="-1" (focus)="onInputFocus()" (blur)="onInputBlur()" (input)="onInput($event)"></textarea>
+</div>

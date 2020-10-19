@@ -12,6 +12,7 @@ import { HiddenTextPluggin } from './tinyMce/plugins/hiddenText.plugin';
 import { UiPluggin } from './tinyMce/plugins/ui.plugin';
 import { CanvasComponent } from './canvas/canvas.component';
 import { DocService } from './_services/doc.service';
+import { EditorComponent } from './canvas/editor/editor.component';
 
 import { QuillModule, QuillConfig } from 'ngx-quill';
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
@@ -39,7 +40,8 @@ UiPluggin.register();
     QuillComponent,
     NavMenuComponent,
     TinyMceComponent,
-    CanvasComponent
+    CanvasComponent,
+    EditorComponent
   ],
   imports: [
     BrowserModule,

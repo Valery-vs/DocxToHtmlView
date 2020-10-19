@@ -5,8 +5,8 @@ export class DocumentService {
   public static Measure(document: Document, ctx: CanvasRenderingContext2D) {
     let yPos = 0;
     document.Paragraphs.forEach(para => {
-      if (!para.Metrics) {
-        para.Metrics = FontService.MeasureParagraph(ctx, para.Font, para.Text);
+      if (para.Metrics == null) {
+        para.Metrics = FontService.MeasureParagraph(ctx, para.CurrentFont, para.Text);
         para.Metrics.Top = yPos;
       }
 
