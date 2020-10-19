@@ -2,6 +2,7 @@ import { Component, ElementRef, NgZone, OnInit, OnDestroy, ViewChild, Input } fr
 import { Document } from '../model/document';
 import { DocumentRenderer } from '../renderers/documentRenderer';
 import { DocumentService } from '../services/documentService';
+import { Selection } from './selection';
 
 @Component({
   selector: 'app-editor',
@@ -21,31 +22,33 @@ export class EditorComponent implements OnInit, OnDestroy  {
   @Input()
   document: Document;
 
-  ctx: CanvasRenderingContext2D;
-  requestId: number;
-  inputFocused: boolean;
+  private _selection: Selection;
+  private _ctx: CanvasRenderingContext2D;
+  private _requestId: number;
+
+  public inputFocused: boolean;
 
   constructor(private ngZone: NgZone) {
   }
 
   ngOnInit() {
-    this.ctx = this.canvasElement.nativeElement.getContext('2d');
+    this._ctx = this.canvasElement.nativeElement.getContext('2d');
     // this.canvasElement.nativeElement.width = this.editorElement.nativeElement.width;
     // this.canvasElement.nativeElement.height = this.editorElement.nativeElement.height;
-    DocumentService.Measure(this.document, this.ctx);
+    DocumentService.Measure(this.document, this._ctx);
 
     this.ngZone.runOutsideAngular(() => this.draw());
   }
 
   ngOnDestroy() {
-    cancelAnimationFrame(this.requestId);
+    cancelAnimationFrame(this._requestId);
   }
 
   draw(): void {
-    this.ctx.clearRect(0, 0, this.canvasElement.nativeElement.width, this.canvasElement.nativeElement.height);
+    this._ctx.clearRect(0, 0, this.canvasElement.nativeElement.width, this.canvasElement.nativeElement.height);
 
-    DocumentService.Measure(this.document, this.ctx);
-    DocumentRenderer.Draw(this.document, this.ctx);
+    DocumentService.Measure(this.document, this._ctx);
+    DocumentRenderer.Draw(this.document, this._ctx);
 
     //this.requestId = requestAnimationFrame(this.draw.bind(this));
   }
@@ -67,5 +70,26 @@ export class EditorComponent implements OnInit, OnDestroy  {
     e.target.value = '';
 
     this.ngZone.runOutsideAngular(() => this.draw());
+  }
+
+  onKeyDown(e) {
+    let handled = true;
+    switch (e.keyCode) {
+        case 37: // Left arrow
+            this._selection.MoveLeft();
+            break;
+        case 38: // Up arrow
+            this._selection.MoveUp();
+            break;
+        case 39: // Up arrow
+            this._selection.MoveRight();
+            break;
+        case 40: // Down arrow
+            this._selection.MoveDown();
+            break;
+        default:
+            handled = false;
+    }
+    return !handled;
   }
 }
